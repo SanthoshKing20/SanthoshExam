@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Employee Payroll System</title>
+    <title>Employee Compensation Management</title>
 
     <style>
         body {
@@ -47,7 +47,7 @@
             background-color: #0056b3;
         }
 
-        .result {
+        .displayResult {
             margin-top: 20px;
             font-weight: bold;
             color: green;
@@ -58,45 +58,46 @@
 <body>
 
     <div class="container">
-        <h2>Employee Payroll System</h2>
+        <h2>Employee Compensation Management</h2>
 
-        <input type="text" id="name" placeholder="Employee Name">
-        <input type="number" id="salary" placeholder="Monthly Salary">
+        <input type="text" id="workerName" placeholder="Employee Full Name">
+        <input type="number" id="baseSalary" placeholder="Monthly Earnings">
 
-        <button id="calcBtn">Calculate Payroll</button>
+        <button id="salaryBtn">Generate Payroll</button>
 
-        <div class="result" id="result"></div>
+        <div class="displayResult" id="salaryOutput"></div>
     </div>
 
     <script>
-        document.getElementById("calcBtn").addEventListener("click", calculatePayroll);
+        document.getElementById("salaryBtn").addEventListener("click", generatePayrollDetails);
 
-        function calculatePayroll() {
+        function generatePayrollDetails() {
 
-            let name = document.getElementById("name").value.trim();
-            let salary = parseFloat(document.getElementById("salary").value);
+            let workerName = document.getElementById("workerName").value.trim();
+            let baseSalary = parseFloat(document.getElementById("baseSalary").value);
 
-            if (name === "" || isNaN(salary)) {
-                alert("Please fill all details correctly!");
+            if (workerName === "" || isNaN(baseSalary)) {
+                alert("Please enter valid employee details!");
                 return;
             }
 
-            if (salary < 0) {
-                alert("Salary cannot be negative!");
+            if (baseSalary < 0) {
+                alert("Earnings cannot be negative!");
                 return;
             }
 
-            let annualSalary = salary * 12;
-            let tax = annualSalary * 0.10;   // 10% tax
-            let netSalary = annualSalary - tax;
+            let totalAnnualEarnings = baseSalary * 12;
+            let deductionAmount = totalAnnualEarnings * 0.10;  
+            let netAnnualIncome = totalAnnualEarnings - deductionAmount;
 
-            document.getElementById("result").innerHTML =
-                "Employee Name: " + name + "<br>" +
-                "Annual Salary: ₹" + annualSalary.toFixed(2) + "<br>" +
-                "Tax (10%): ₹" + tax.toFixed(2) + "<br>" +
-                "Net Salary: ₹" + netSalary.toFixed(2);
+            document.getElementById("salaryOutput").innerHTML =
+                "Employee Name: " + workerName + "<br>" +
+                "Total Annual Earnings: ₹" + totalAnnualEarnings.toFixed(2) + "<br>" +
+                "Tax Deduction (10%): ₹" + deductionAmount.toFixed(2) + "<br>" +
+                "Net Annual Income: ₹" + netAnnualIncome.toFixed(2);
         }
     </script>
 
 </body>
 </html>
+
