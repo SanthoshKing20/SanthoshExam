@@ -60,8 +60,8 @@
     <div class="container">
         <h2>Employee Payroll System</h2>
 
-        <input type="text" id="name" placeholder="Enter Employee Name">
-        <input type="number" id="salary" placeholder="Enter Monthly Salary">
+        <input type="text" id="name" placeholder="Employee Name">
+        <input type="number" id="salary" placeholder="Monthly Salary">
 
         <button id="calcBtn">Calculate Payroll</button>
 
